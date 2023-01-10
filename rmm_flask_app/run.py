@@ -4,6 +4,7 @@ import rmm_flask_app.output as output
 import gspread
 import numpy as np
 
+
 def run(url: str):
     account = gspread.service_account("credentials.json")
     # Open spreadsheet by name:
@@ -29,7 +30,7 @@ def run(url: str):
 
     matching_edge_labels = {}
     for i, (rater, rated) in enumerate(matching.items()):
-        print(rater,rated)
+        print(rater, rated)
         if i == len(matching) / 2:
             break
         rating = G[rater][rated]["rank"]
@@ -47,4 +48,5 @@ def run(url: str):
 
     from multiprocessing import Pool
     with Pool(1) as p:
-        return p.apply(output.create_output_images, args=(G,matching_edges,matching_edge_labels,edge_labels,rater_list))
+        return p.apply(output.create_output_images,
+                       args=(G, matching_edges, matching_edge_labels, edge_labels, rater_list))

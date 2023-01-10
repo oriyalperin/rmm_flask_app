@@ -30,38 +30,3 @@ def create_output_images(G, matching_edges, matching_edge_labels, edge_labels, r
     plt.savefig(f"static/media/{matching_name}.png")
     return {"graph": graph_name, "matching": matching_name}
 
-def make_output_animation(G, matching_edges, matching_edge_labels, edge_labels, rater_list, callback=None):
-    import matplotlib.animation as animation
-    pos = nx.bipartite_layout(G, nodes=rater_list)
-    fig, ax = plt.subplots(figsize=(10, 10))
-    matching_graph = nx.Graph()
-    matching_graph.add_edges_from(matching_edge_labels)
-    nx.draw(G, pos=pos, with_labels=True, node_color='#999FFF', node_size=500, edge_color='#999999', width=6)
-    nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
-
-    nx.draw_networkx_edges(G, pos=pos, edgelist=matching_edges, edge_color='#FF0000', width=5)
-    nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
-
-
-
-
-    def update(i):
-        if i % 3 == 0:
-            plt.clf()
-            nx.draw(G, pos=pos, with_labels=True, node_color='#999FFF', node_size=500, edge_color='#999999', width=6)
-            nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
-            pass
-        elif i % 3 == 1:
-            nx.draw_networkx_edges(G, pos=pos, edgelist=matching_edges, edge_color='#FF0000', width=5)
-            nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
-        else:
-            plt.clf()
-            nx.draw(matching_graph, pos=pos, with_labels=True, node_color='#999FFF', node_size=500,
-                    edge_color='#FF0000', width=5)
-            nx.draw_networkx_edge_labels(matching_graph, pos=pos, edge_labels=matching_edge_labels, label_pos=0.2)
-        for label in plt.gca().get_yticklabels():
-            label.set_verticalalignment('bottom')
-            label.set_y(-5)
-
-    #ani = animation.FuncAnimation(fig, update, frames=range(10), interval=1000)
-    #ani.save('static/media/animation.gif', writer='imagemagick')
