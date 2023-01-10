@@ -1,5 +1,5 @@
 from flask import render_template, request
-from app
+from rmm_flask_app import app
 
 import gspread
 

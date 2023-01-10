@@ -1,6 +1,6 @@
 import networkx as nx
-from ex6.flask_rmm.rmm_algo import rank_maximal_matching
-import ex6.flask_rmm.output as output
+from rmm_flask_app.rmm_algo import rank_maximal_matching
+import rmm_flask_app.output as output
 import gspread
 import numpy as np
 
