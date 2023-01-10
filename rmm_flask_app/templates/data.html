@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Rank Maximal Matching</title>
+</head>
+<body>
+
+<h1 style="background: #F5F5F5; " >Rank Maximal Matching</h1>
+<div style=" width: 50%;
+      overflow: auto;">
+</div>
+    <h3>a matching in a bipartite graph with sides X,Y.
+        <br>It maximizes the number of vertices in X that are linked to their first priority;</br>
+        subject to that, the number of vertices linked to their second priority; etc</h3>
+    <a href="https://d1wqtxts1xzle7.cloudfront.net/43890109/Rank-maximal_matchings20160319-5330-17us31z-libre.pdf?1458398152=&response-content-disposition=inline%3B+filename%3DRank_maximal_matchings.pdf&Expires=1673263482&Signature=QWSV3VJZC2I8dPn9D5m~yNr3gHECtLyuRwMTPc9QxVBI5VdQ579hR-~wwF5bprXiCSolrHbsKAzrwTb3OG-lswHm42eLMnWvAUgyKzxVc7V9FTR2expMXWm-5Eaz7nnh-Q1TbaKSm42B0ujvTI5pIkUXYqJohvehO~VFlQHSIPT68IHjX8fNUaPhI5K00xGtCIemxP~eV5Mm-Vh1aTr9uCiGHWRd-jG1qGHfNtI1Kfy33rhqKal0jhvAy2KbuxsGXpWxhmzlVtpttqCDbvRj-9ogzaCB-y0XwSrPa5uSsbZ0bsKsPlpPe7nUnmxYXii5yOXiIcdicZ~o~Z8WZRSOuQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">article</a>
+        <a href="https://github.com/OLAnetworkx/networkx/tree/rank-maximal-matching">GitHub-fork</a>
+
+<div id="container">
+  <ol>
+  <li>Create a new Google Spreadsheet. You can see an example <a href="https://docs.google.com/spreadsheets/d/1ovp9-S1hQJxZs23XBYJi6fBZUrW39f_QF9a5AhhM6fA/edit?usp=sharing">here</a>
+      <br>important:
+      <br>please make sure that the data stored in worksheet named "input",
+      <br>and the cell at the left corner in your spreadsheet says "agent/item"</br>
+      <br>In this example, each agent is an applicant and each item is a company.
+      <br>The applicants rank the companies they are interested of.
+      <br>For example, Amiel is interested of Intel,Ebay and Hp, and ranks them in this order.
+      <br>Note: the minimal rank can be any non-negative rank. </br>
+        <br><img src="../static/media/graph_example.png"/></br>
+    </li>
+<li>Share the spreadsheet with the following email address: <br/> <a href>rmm-996@rank-maximal-matching.iam.gserviceaccount.com</a></li>
+<li>Enter the URL of the spreadsheet here:
+  <form method="GET" action="/get_data_from_gspread">
+   <input name="url" size='100'/>
+  <input type='submit' name="url" value="continue" />
+</form>
+    {% if error %}
+    <p style="color: red; font-size: 15px">{{error}}</p>
+    {% endif %}
+</li>
+</ol>
+</div>
+
+</body>
+</html>
