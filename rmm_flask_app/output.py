@@ -2,7 +2,7 @@ import gspread
 import networkx as nx
 import matplotlib.pyplot as plt
 import uuid
-
+import io
 
 def worksheet(spreadsheet: gspread.Spreadsheet, new_row_count, new_col_count) -> gspread.Worksheet:
     try:
@@ -23,10 +23,16 @@ def create_output_images(G, matching_edges, matching_edge_labels, edge_labels, r
     nx.draw(G, pos=pos, with_labels=True, node_color='#999FFF', node_size=500, edge_color='#999999', width=4)
     nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
     graph_name = uuid.uuid4().hex[:6].upper()
-    plt.savefig(f"static/media/{graph_name}.png")
+    buf_graph = io.BytesIO()
+    plt.savefig(buf_graph,format='png')
+# Seek to the beginning of the BytesIO object
+    buf_graph.seek(0)
     nx.draw_networkx_edges(G, pos=pos, edgelist=matching_edges, edge_color='#FF0000', width=3)
     nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=edge_labels, label_pos=0.2)
     matching_name = uuid.uuid4().hex[:6].upper()
-    plt.savefig(f"static/media/{matching_name}.png")
-    return {"graph": graph_name, "matching": matching_name}
-
+    buf_match = io.BytesIO()
+    plt.savefig(buf_match, format='png')
+    # Seek to the beginning of the BytesIO object
+    buf_match.seek(0)
+    plt.clf()
+    return {"graph": {"name": graph_name, "img":buf_graph}, "matching": {"name":matching_name,"img":buf_match}}

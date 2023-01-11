@@ -39,8 +39,12 @@ def get_data_from_gspread():
 
 @app.route('/run_the_algorithm')
 def run_the_algorithm():
-    url = request.args.get('url')
-    import run
-    names =run_algo.run(url=url)
-    return names
+    import base64
 
+    url = request.args.get('url')
+    graphs =run_algo.run(url=url)
+    img_g = base64.b64encode(graphs["graph"]["img"].getvalue()).decode()
+    img_m = base64.b64encode(graphs["matching"]["img"].getvalue()).decode()
+    graphs["graph"]["img"]=img_g
+    graphs["matching"]["img"]=img_m
+    return graphs
