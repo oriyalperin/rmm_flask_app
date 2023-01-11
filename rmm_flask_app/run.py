@@ -6,7 +6,7 @@ import numpy as np
 
 
 def run(url: str):
-    account = gspread.service_account("credentials.json")
+    account = gspread.service_account("google-credentials.json")
     # Open spreadsheet by name:
     spreadsheet = account.open_by_url(url)
     # Open sheet by name:

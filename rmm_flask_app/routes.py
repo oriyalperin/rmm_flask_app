@@ -3,7 +3,7 @@ from rmm_flask_app import app
 
 import gspread
 
-account = gspread.service_account("credentials.json")
+account = gspread.service_account("google-credentials.json")
 
 
 @app.route('/')
