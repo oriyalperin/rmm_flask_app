@@ -44,7 +44,3 @@ def run_the_algorithm():
     names = run.run(url=url)
     return names
 
-
-if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port="2704")
-
