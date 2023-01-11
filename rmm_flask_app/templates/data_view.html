@@ -18,8 +18,8 @@
             e.preventDefault()
             $('#loader').css('display', 'block');
             $.getJSON('/run_the_algorithm?&url='+encodeURIComponent('{{url}}'), function(data) {
-                $('#graph').attr('src',"data:image/png;base64,{{ data.graph.img_g }}");
-                $('#matching').attr('src', "data:image/png;base64,{{ data.matching.img_m }}");
+                $('#graph').attr('src',"data:image/png;base64," + data.graph.img);
+                $('#matching').attr('src', "data:image/png;base64," + data.matching.img);
                 $('#plottingG').css('content-visibility', 'visible');
                 $('#plottingM').css('content-visibility', 'visible');
                 $('#loader').css('display', 'none');
