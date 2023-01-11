@@ -1,5 +1,5 @@
 from flask import render_template, request
-from rmm_flask_app import app
+from rmm_flask_app import app, run_algo
 
 import gspread
 
@@ -41,6 +41,6 @@ def get_data_from_gspread():
 def run_the_algorithm():
     url = request.args.get('url')
     import run
-    names = run.run(url=url)
+    names =run_algo.run(url=url)
     return names
 
