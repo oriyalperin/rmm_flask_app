@@ -1,7 +1,7 @@
 ## Rank Maximal Matching Algorithm
 Algorithm Demo: A Simple Flask Web App
 
-The web app can be accessed at https://rmmalgo.csariel.xyz.
+The web app can be accessed at https://rmm.csariel.xyz.
 
 ### Requirements:
 python3, pip , virtualenv, google credentials
